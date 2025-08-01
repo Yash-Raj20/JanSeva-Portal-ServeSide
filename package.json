@@ -4,7 +4,11 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node build/index.js",
+    "clean": "rm -rf build",
+    "build": "npm run clean && mkdir -p build && cp index.js build && cp -r routes controllers models config middleware build && cp package.json build && cp .env build"
   },
   "author": "Ratnesh Kumar",
   "license": "ISC",
