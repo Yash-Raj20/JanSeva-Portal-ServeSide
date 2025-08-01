@@ -8,8 +8,11 @@ import {
   profile,
   logoutUser,
   updateProfile,
+  getAllUsers,
 } from "../controllers/UserController/authController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+
+router.get("/all", getAllUsers);
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);

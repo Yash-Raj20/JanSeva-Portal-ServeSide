@@ -218,3 +218,19 @@ export const updateProfile = async (req, res) => {
     res.status(500).json({ message: "Failed to update profile" });
   }
 };
+
+// 📋 Get All Users (non-admin)
+export const getAllUsers = async (req, res) => {
+  try {
+    // Optionally filter to exclude admins
+    const users = await User.find().select("-password");
+
+    res.status(200).json({
+      users,
+      message: "All users fetched successfully",
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error.message);
+    res.status(500).json({ message: "Failed to fetch users" });
+  }
+};
