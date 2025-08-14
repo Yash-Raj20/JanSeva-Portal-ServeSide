@@ -9,6 +9,7 @@ import {
   comment,
 } from "../controllers/ProblemController/problemController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+import Problem from "../models/Problem.js";
 
 const router = express.Router();
 
@@ -35,10 +36,11 @@ router.get("/", getAllProblems);
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const problem = await Problem.findById(id);
+    const problem = await Problem.findById(id).populate("userId", "name profileImage");
     if (!problem) return res.status(404).json({ message: "Problem not found" });
     res.json(problem);
   } catch (err) {
+    console.error("Error fetching problem by id:", err);
     res.status(500).json({ message: "Server error" });
   }
 });
