@@ -32,6 +32,16 @@ router.post(
 );
 
 router.get("/", getAllProblems);
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const problem = await Problem.findById(id);
+    if (!problem) return res.status(404).json({ message: "Problem not found" });
+    res.json(problem);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
 router.put("/:id/upvote", authMiddleware, upvote);
 router.post("/:id/comment", authMiddleware, comment);
 
