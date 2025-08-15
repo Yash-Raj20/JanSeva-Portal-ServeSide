@@ -34,10 +34,10 @@ router.post(
 
 router.get("/", getAllProblems);
 router.get("/:id/:title", async (req, res) => {
-  const { id } = req.params;
+  const { id, title } = req.params;
   try {
     const problem = await Problem.findById(id).populate("userId", "name profileImage");
-    if (!problem) return res.status(404).json({ message: "Problem not found" });
+    if (!problem || problem.title !== title) return res.status(404).json({ message: "Problem not found" });
     res.json(problem);
   } catch (err) {
     console.error("Error fetching problem by id:", err);
