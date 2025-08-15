@@ -33,7 +33,7 @@ router.post(
 );
 
 router.get("/", getAllProblems);
-router.get("/:id", async (req, res) => {
+router.get("/:id/:title", async (req, res) => {
   const { id } = req.params;
   try {
     const problem = await Problem.findById(id).populate("userId", "name profileImage");
@@ -45,6 +45,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 router.put("/:id/upvote", authMiddleware, upvote);
+router.put("/:id/status", authMiddleware, updateStatus);
 router.post("/:id/comment", authMiddleware, comment);
 
 export default router;
