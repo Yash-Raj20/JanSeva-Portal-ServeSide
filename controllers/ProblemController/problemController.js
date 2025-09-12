@@ -162,6 +162,33 @@ export const upvote = async (req, res) => {
   }
 };
 
+// ---------------------- Assign Problem ----------------------
+export const assignProblem = async (req, res) => {
+  try {
+    const problemId = req.params.id;
+    const { subAdminId } = req.body;
+
+    if (!subAdminId) {
+      return res.status(400).json({ message: "Sub-admin ID is required." });
+    }
+
+    const problem = await Problem.findById(problemId);
+    if (!problem) {
+      return res.status(404).json({ message: "Problem not found" });
+    }
+
+    problem.assignedTo = subAdminId;
+    problem.status = "assigned";
+    await problem.save();
+
+    return res.status(200).json({ message: "Problem assigned successfully" });
+  } catch (error) {
+    console.error("Error assigning problem:", error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};
+
+
 // ---------------------- Add Comment to Issue ----------------------
 export const comment = async (req, res) => {
   try {
