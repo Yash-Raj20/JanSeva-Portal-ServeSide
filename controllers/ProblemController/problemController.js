@@ -167,6 +167,8 @@ export const assignProblem = async (req, res) => {
   try {
     const problemId = req.params.id;
     const { subAdminId } = req.body;
+    const userId = req.user.id;
+    const role = req.user.role; 
 
     if (!subAdminId) {
       return res.status(400).json({ message: "Sub-admin ID is required." });

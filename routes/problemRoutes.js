@@ -48,6 +48,6 @@ router.get("/:id", async (req, res) => {
 router.put("/:id/upvote", authMiddleware, upvote);
 router.put("/:id/status", authMiddleware, updateStatus);
 router.post("/:id/comment", authMiddleware, comment);
-router.post("/:id/assign", authMiddleware, assignProblem);
+router.post("/:id/assign", assignProblem);
 
 export default router;
