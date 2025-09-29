@@ -45,7 +45,7 @@ const server = http.createServer(app);
 // Middleware
 // -----------------------------
 app.use(cors({
-  origin: ["http://localhost:3000", "https://jansevaportal.vercel.app", "http://localhost:8080"],
+  origin: ["http://localhost:3000", "https://jansevaportal.vercel.app", "http://localhost:5173"],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
