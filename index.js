@@ -45,7 +45,7 @@ const server = http.createServer(app);
 // Middleware
 // -----------------------------
 app.use(cors({
-  origin: ["http://localhost:3000", "https://jansevaportal.vercel.app", "https://home-dashboard-b7df.onrender.com"],
+  origin: ["http://localhost:3000", "https://jansevaportal.vercel.app", "https://home-dashboard-b7df.onrender.com", "http://localhost:5173"],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
