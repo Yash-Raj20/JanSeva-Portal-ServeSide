@@ -9,6 +9,7 @@ export const authMiddleware = async (req, res, next) => {
     // Agar cookie me token nahi hai to Authorization header se nikalna (dashboard frontend ke liye)
     if (!token && req.headers.authorization?.startsWith("Bearer ")) {
       token = req.headers.authorization.split(" ")[1];
+      secret = process.env.DASHBOARD_SECRET;
     }
 
     // Agar phir bhi token nahi mila
